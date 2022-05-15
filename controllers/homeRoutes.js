@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
 })
 
 // GET route to find the user and user data, and posting the information found to the profile page 
+//include Subscribe for team_id
+//how to get the related team based on team_id
 router.get('/profile', withAuth, async (req, res) => {
     try{
         const userData = await User.findByPk(req.session.user_id, {

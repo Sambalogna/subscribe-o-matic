@@ -9,6 +9,10 @@
 const subscription = async (event) => {
     const response = await fetch('/api/subscribe', {
           method: 'POST',
+          //I'd prefer to take in the association than the team name
+          //that way when I use the an api to populate the team model
+          // the team model can be retrieved based on what the user wants
+          //body: JSON.stringify({"teamName": event.target.id})
           body: JSON.stringify({"team_id": event.target.id}),
           headers: { 'Content-Type': 'application/json' },
     });

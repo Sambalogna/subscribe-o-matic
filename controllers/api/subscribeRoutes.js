@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Subscribe, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 const nodemailer = require('nodemailer');
-
+require('dotenv').config();
 // POST route to create a new subscription
 router.post('/', withAuth, async (req, res) => {
     try {
@@ -23,8 +23,8 @@ router.post('/', withAuth, async (req, res) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'subscribeomaticmailer@gmail.com',
-                    pass: 'Password1234!'
+                    user: process.env.GMAIL_USER,
+                    pass: process.env.GMAIL_PASSWORD
                 }
             });
             let info = await transporter.sendMail({
